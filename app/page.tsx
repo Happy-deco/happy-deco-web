@@ -166,12 +166,24 @@ export default function Home() {
   const [open, setOpen] = useState<number | null>(null),
     [active, setActive] = useState<TabId>("inicio");
   useEffect(() => {
-    const hash = window.location.hash.slice(1) as TabId;
-    if (tabs.some((t) => t.id === hash)) setActive(hash);
+    const syncTab = () => {
+      const hash = window.location.hash.slice(1) as TabId;
+      if (tabs.some((t) => t.id === hash)) setActive(hash);
+    };
+    syncTab();
+    window.addEventListener("popstate", syncTab);
+    return () => window.removeEventListener("popstate", syncTab);
+  }, []);
+  useEffect(() => {
+    const closeOnEscape = (event: globalThis.KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(null);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
   }, []);
   const selectTab = (id: TabId) => {
     setActive(id);
-    window.history.replaceState(null, "", `#${id}`);
+    if (window.location.hash !== `#${id}`) window.history.pushState(null, "", `#${id}`);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   const tabKey = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
@@ -264,10 +276,6 @@ export default function Home() {
                   alt="Ambientación en tonos rosa y dorado"
                 />
               </figure>
-              <div className="seal">
-                <strong>Desde</strong>
-                <span>2022</span>
-              </div>
             </div>
           </div>
           <div className="promise">
@@ -609,7 +617,7 @@ export default function Home() {
             aria-modal="true"
             onClick={(e) => e.stopPropagation()}
           >
-            <button className="modal-close" onClick={() => setOpen(null)}>
+            <button className="modal-close" onClick={() => setOpen(null)} aria-label="Cerrar detalles">
               ×
             </button>
             <div className="modal-photo">
