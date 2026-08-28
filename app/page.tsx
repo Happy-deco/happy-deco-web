@@ -134,7 +134,7 @@ const proposals = [
     ],
   },
 ];
-const gallery = ["05", "07", "08", "09", "10", "11"];
+const initialGallery = ["05", "07", "08", "09", "10", "11"].map((n,i)=>({src:asset(`/images/evento-real-${n}.jpg`),alt:`Ambientación realizada por Happy Deco ${i+1}`,title:"Happy Deco"}));
 const process = [
   {
     n: "01",
@@ -166,6 +166,8 @@ const process = [
 export default function Home() {
   const [open, setOpen] = useState<number | null>(null),
     [active, setActive] = useState<TabId>("inicio");
+  const [galleryImages,setGalleryImages]=useState(initialGallery);
+  useEffect(()=>{fetch(asset("/gallery.json"),{cache:"no-store"}).then(r=>r.ok?r.json():Promise.reject()).then(data=>Array.isArray(data)&&setGalleryImages(data)).catch(()=>{})},[]);
   useEffect(() => {
     const syncTab = () => {
       const hash = window.location.hash.slice(1) as TabId;
@@ -464,11 +466,11 @@ export default function Home() {
             </p>
           </div>
           <div className="gallery-grid">
-            {gallery.map((n, i) => (
-              <figure className={`gallery-item g${i + 1}`} key={n}>
+            {galleryImages.map((photo, i) => (
+              <figure className={`gallery-item g${(i % 6) + 1}`} key={photo.src} title={photo.title}>
                 <img
-                  src={asset(`/images/evento-real-${n}.jpg`)}
-                  alt={`Ambientación Happy Deco ${i + 1}`}
+                  src={photo.src}
+                  alt={photo.alt}
                   loading="lazy"
                 />
               </figure>
