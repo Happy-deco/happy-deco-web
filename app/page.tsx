@@ -567,14 +567,31 @@ export default function Home() {
         </section>
       )}
       <footer>
-        <button
-          className="logo logo-button"
-          onClick={() => selectTab("inicio")}
-        >
-          Happy <span>Deco</span>
-        </button>
-        <p>Magia en cada evento.</p>
-        <p>© 2026 Happy Deco</p>
+        <div className="footer-brand">
+          <button
+            className="logo logo-button"
+            onClick={() => selectTab("inicio")}
+          >
+            Happy <span>Deco</span>
+          </button>
+          <p>Magia en cada evento.</p>
+        </div>
+        <div className="footer-group">
+          <h2>Seguinos</h2>
+          <div className="footer-links social-links">
+            <a href="https://instagram.com/happydecoar" target="_blank" rel="noreferrer">Instagram ↗</a>
+            <a href={whatsapp} target="_blank" rel="noreferrer">WhatsApp ↗</a>
+          </div>
+        </div>
+        <div className="footer-group">
+          <h2>Contacto</h2>
+          <div className="footer-links">
+            <a href="tel:+543853034509">385 303-4509</a>
+            <a href="mailto:happydecoar@gmail.com">happydecoar@gmail.com</a>
+            <span>Santiago del Estero, Argentina</span>
+          </div>
+        </div>
+        <p className="footer-copy">© 2026 Happy Deco</p>
       </footer>
       <a
         className="floating-wa"
