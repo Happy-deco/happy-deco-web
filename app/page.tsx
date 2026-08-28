@@ -2,6 +2,8 @@
 import { KeyboardEvent, useEffect, useState } from "react";
 
 const phone = "543853034509";
+const base = "/happy-deco-web";
+const asset = (path: string) => `${base}${path}`;
 const whatsapp = `https://wa.me/${phone}?text=${encodeURIComponent("Hola Happy Deco, quiero consultar por una ambientación")}`;
 const tabs = [
   { id: "inicio", label: "Inicio" },
@@ -16,7 +18,7 @@ const proposals = [
   {
     name: "Express",
     tag: "Íntima",
-    image: "/images/ambientacion-03.jpg",
+    image: asset("/images/ambientacion-03.jpg"),
     desc: "Una ambientación simple y cuidada, ideal para festejos íntimos y espacios pequeños.",
     meta: "Hasta 20 personas",
     items: [
@@ -29,7 +31,7 @@ const proposals = [
   {
     name: "Minimalista",
     tag: "Sutil",
-    image: "/images/ambientacion-04.jpg",
+    image: asset("/images/ambientacion-04.jpg"),
     desc: "Un único foco visual, delicado y personalizado para casas, departamentos o salones pequeños.",
     meta: "Ideal para 30 personas",
     items: [
@@ -42,7 +44,7 @@ const proposals = [
   {
     name: "Clásica",
     tag: "Completa",
-    image: "/images/evento-real-05.jpg",
+    image: asset("/images/evento-real-05.jpg"),
     desc: "Una composición envolvente con más mobiliario y presencia visual.",
     meta: "Hasta 40 personas",
     items: [
@@ -55,7 +57,7 @@ const proposals = [
   {
     name: "Intermedia",
     tag: "Especial",
-    image: "/images/ambientacion-06.jpg",
+    image: asset("/images/ambientacion-06.jpg"),
     desc: "Una puesta armoniosa para espacios medianos, con arco orgánico y distintos planos.",
     meta: "30 a 50 personas",
     items: [
@@ -68,7 +70,7 @@ const proposals = [
   {
     name: "Premium",
     tag: "Distinguida",
-    image: "/images/evento-real-07.jpg",
+    image: asset("/images/evento-real-07.jpg"),
     desc: "Una propuesta completa y de alto impacto, pensada para celebraciones que buscan destacarse.",
     meta: "Desde 3 × 3 m",
     items: [
@@ -81,7 +83,7 @@ const proposals = [
   {
     name: "Exclusiva",
     tag: "Inolvidable",
-    image: "/images/evento-real-08.jpg",
+    image: asset("/images/evento-real-08.jpg"),
     desc: "Una ambientación amplia con tarima, panel 3D e iluminación decorativa.",
     meta: "80 a 100 personas",
     items: [
@@ -94,7 +96,7 @@ const proposals = [
   {
     name: "Escenográfica 3×3",
     tag: "Inmersiva",
-    image: "/images/evento-real-09.jpg",
+    image: asset("/images/evento-real-09.jpg"),
     desc: "Una escena temática inmersiva que transforma por completo un sector del evento.",
     meta: "Armado estimado: 3 a 4 h",
     items: [
@@ -107,7 +109,7 @@ const proposals = [
   {
     name: "Escenográfica 6×3",
     tag: "Gran escala",
-    image: "/images/evento-real-10.jpg",
+    image: asset("/images/evento-real-10.jpg"),
     desc: "Mayor desarrollo visual para eventos medianos a grandes.",
     meta: "Armado estimado: 3 a 4 h",
     items: [
@@ -120,7 +122,7 @@ const proposals = [
   {
     name: "Escenográfica 10×3",
     tag: "Impactante",
-    image: "/images/evento-real-11.jpg",
+    image: asset("/images/evento-real-11.jpg"),
     desc: "La propuesta más completa, creada para celebraciones centrales y espacios de gran escala.",
     meta: "Armado estimado: 5 a 6 h",
     items: [
@@ -252,13 +254,13 @@ export default function Home() {
             <div className="hero-collage">
               <figure className="photo-main">
                 <img
-                  src="/images/evento-real-11.jpg"
+                  src={asset("/images/evento-real-11.jpg")}
                   alt="Ambientación amplia en tonos pastel"
                 />
               </figure>
               <figure className="photo-small">
                 <img
-                  src="/images/evento-real-07.jpg"
+                  src={asset("/images/evento-real-07.jpg")}
                   alt="Ambientación en tonos rosa y dorado"
                 />
               </figure>
@@ -328,7 +330,7 @@ export default function Home() {
           <div className="shop-window">
             <div className="window-image">
               <img
-                src="/images/vidriera-dia-nino.jpg"
+                src={asset("/images/vidriera-dia-nino.jpg")}
                 alt="Vidriera comercial para el Día del Niño"
               />
             </div>
@@ -372,7 +374,7 @@ export default function Home() {
               </h1>
             </div>
             <img
-              src="/xime-cati-happy-deco.jpg"
+              src={asset("/xime-cati-happy-deco.jpg")}
               alt="Xime y Cati, creadoras de Happy Deco"
             />
           </div>
@@ -477,7 +479,7 @@ export default function Home() {
             {gallery.map((n, i) => (
               <figure className={`gallery-item g${i + 1}`} key={n}>
                 <img
-                  src={`/images/evento-real-${n}.jpg`}
+                  src={asset(`/images/evento-real-${n}.jpg`)}
                   alt={`Ambientación Happy Deco ${i + 1}`}
                   loading="lazy"
                 />
