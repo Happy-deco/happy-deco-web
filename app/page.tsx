@@ -11,6 +11,7 @@ const tabs = [
   { id: "propuestas", label: "Propuestas" },
   { id: "galeria", label: "Galería" },
   { id: "proceso", label: "Cómo trabajamos" },
+  { id: "vidrieras", label: "Vidrieras" },
   { id: "contacto", label: "Contacto" },
 ] as const;
 type TabId = (typeof tabs)[number]["id"];
@@ -335,34 +336,13 @@ export default function Home() {
               <button className="button primary" onClick={() => selectTab("propuestas")}>Abrir la solapa Propuestas</button>
             </div>
           </div>
-          <div className="shop-window">
-            <div className="window-image">
-              <img
-                src={asset("/images/vidriera-dia-nino.jpg")}
-                alt="Vidriera comercial para el Día del Niño"
-              />
+          <div className="process home-process">
+            <div className="process-intro">
+              <p className="eyebrow">Cómo trabajamos</p>
+              <h2>De una idea<br />a un momento<br /><span>inolvidable.</span></h2>
+              <p>Te acompañamos desde la primera conversación hasta el detalle final.</p>
             </div>
-            <div className="window-copy">
-              <p className="eyebrow">También para comercios</p>
-              <h2>
-                Vidrieras que
-                <br />
-                atraen miradas.
-              </h2>
-              <p>
-                Creamos campañas estacionales para transformar vidrieras,
-                destacar productos y conectar cada negocio con fechas
-                especiales.
-              </p>
-              <a
-                className="button dark"
-                href="https://happy-deco-vidrieras.netlify.app"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Propuestas para vidrieras <span>↗</span>
-              </a>
-            </div>
+            <ol>{process.map((s) => <li key={s.n}><span>{s.n}</span><div><h3>{s.t}</h3><p>{s.d}</p></div></li>)}</ol>
           </div>
         </section>
       )}
@@ -526,6 +506,26 @@ export default function Home() {
               </li>
             ))}
           </ol>
+        </section>
+      )}
+      {active === "vidrieras" && (
+        <section id="panel-vidrieras" role="tabpanel" className="tab-panel window-page">
+          <div className="shop-window">
+            <div className="window-image">
+              <img src={asset("/images/vidriera-dia-nino.jpg")} alt="Vidriera comercial para el Día del Niño" />
+            </div>
+            <div className="window-copy">
+              <p className="eyebrow">Ambientaciones para comercios</p>
+              <h2>Vidrieras que<br />atraen miradas.</h2>
+              <p>Creamos campañas estacionales para transformar vidrieras, destacar productos y conectar cada negocio con fechas especiales.</p>
+              <a className="button dark" href="https://happy-deco-vidrieras.netlify.app" target="_blank" rel="noreferrer">Conocé el catálogo de vidrieras <span>↗</span></a>
+            </div>
+          </div>
+          <div className="window-benefits">
+            <article><span>01</span><h3>Diseño estacional</h3><p>Propuestas pensadas para cada fecha comercial y para la identidad de tu negocio.</p></article>
+            <article><span>02</span><h3>Impacto visual</h3><p>Composiciones que atraen miradas y ayudan a destacar los productos.</p></article>
+            <article><span>03</span><h3>Servicio integral</h3><p>Diseño, preparación y montaje para que el comercio esté listo a tiempo.</p></article>
+          </div>
         </section>
       )}
       {active === "contacto" && (
